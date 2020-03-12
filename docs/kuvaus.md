@@ -13,3 +13,7 @@ Käyttäjät voivat lisätä sovellukseen reseptejä sekä tarkastella muiden re
 Jos aikaa riittää... (ei näy alustavassa kaaviossa)
 - Erilaisten tagien/kategorioiden lisäys resepteille ja haku niiden perusteella esim. kasvisruoka
 - Mahdollisuus jättää kysymyksiä/kommentteja reseptin alle
+
+### Alustava tietokantakaavio
+
+![Tietokantakaavio](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/docs/kaavio.png)
