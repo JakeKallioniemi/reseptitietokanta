@@ -10,5 +10,6 @@ Käyttäjät voivat lisätä sovellukseen reseptejä sekä tarkastella muiden re
 - Reseptien haku eri kriteerein
 - Reseptien järjestäminen eri kriteerein
 
-Jos aikaa riittää...
-- Erilaisten tagien/kategorioiden lisäys resepteille esim. kasvisruoka (ei näy alustavassa kaaviossa)
+Jos aikaa riittää... (ei näy alustavassa kaaviossa)
+- Erilaisten tagien/kategorioiden lisäys resepteille ja haku niiden perusteella esim. kasvisruoka
+- Mahdollisuus jättää kysymyksiä/kommentteja reseptin alle
