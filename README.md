@@ -1,19 +1,12 @@
 # Reseptitietokanta
 
-Käyttäjät voivat lisätä sovellukseen reseptejä sekä tarkastella muiden reseptejä ja arvostella niitä. Reseptejä voidaan listata eri järjestyksissä esim. arvosteluiden tai valmistusajan perusteella. Reseptejä on myös mahdollista hakea ainakin nimen ja ainesosien perusteella.
+Sovellus reseptien tallennukseen, hakemiseen ja arvosteluun.
 
-### Toimintoja:
+### Heroku
 
-- Kirjautuminen
-- Reseptien luonti ja tarkastelu sekä omien reseptien muokkaus ja poistaminen
-- Muiden reseptien arvostelu
-- Reseptien haku eri kriteerein
-- Reseptien järjestäminen eri kriteerein
+https://tsoha-cookbook.herokuapp.com/ 
 
-Jos aikaa riittää... (ei näy alustavassa kaaviossa)
-- Erilaisten tagien/kategorioiden lisäys resepteille ja haku niiden perusteella esim. kasvisruoka
-- Mahdollisuus jättää kysymyksiä/kommentteja reseptin alle
+### Dokumentaatio
 
-### Alustava tietokantakaavio
-
-![Tietokantakaavio](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/docs/kaavio.png)
+[Tietokantakaavio](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/diagram.png)  
+[User storyt](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/user_stories.md)
