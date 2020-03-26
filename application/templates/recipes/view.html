@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1>{{ recipe.name }}</h1>
+  <p>{{ recipe.duration }} min</p>
+  <p>{{ recipe.instructions }}</p>
+  {% if current_user.id == recipe.account_id %}
+  <form method="GET" action="{{ url_for('recipe_edit_form', recipe_id=recipe.id) }}">
+    <input type="submit" value="Edit"/>
+  </form>
+  <form method="POST" action="{{ url_for('recipe_delete', recipe_id=recipe.id) }}">
+    <input type="submit" value="Remove"/>
+  </form>
+  {% endif %}
+{% endblock %}
