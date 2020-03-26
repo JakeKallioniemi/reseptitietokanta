@@ -6,10 +6,20 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
+    <p>
+      {{ current_user.username }} <a href="{{ url_for('auth_logout') }}">Logout</a>
+    </p>
+    {% else %}
+    <a href="{{ url_for('auth_signup') }}">Signup</a> or 
+    <a href="{{ url_for('auth_login') }}">Login</a>
+    {% endif %}
+
     <ul>
       <li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
       <li><a href="{{ url_for('recipes_form') }}">Add a recipe</a></li>
     </ul>
+
     {% block body %}
       <p>
         Content.
