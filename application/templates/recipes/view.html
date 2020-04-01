@@ -4,6 +4,12 @@
   <h1>{{ recipe.name }}</h1>
   <p>{{ recipe.duration }} min</p>
   <p>{{ recipe.instructions }}</p>
+  <p>Average rating: {{ rating }}</p>
+  <form method="POST" action="{{ url_for('review_create', recipe_id=recipe.id) }}">
+    {{ form.rating.label }}
+    {{ form.rating }}
+    <input type="submit" value="Rate">
+  </form>
   {% if current_user.id == recipe.account_id %}
   <form method="GET" action="{{ url_for('recipe_edit_form', recipe_id=recipe.id) }}">
     <input type="submit" value="Edit"/>

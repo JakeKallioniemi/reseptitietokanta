@@ -17,12 +17,9 @@ db = SQLAlchemy(app)
 
 # models and views
 from application import views
-
-from application.recipes import models
-from application.recipes import views
-
-from application.auth import models
-from application.auth import views
+from application.recipes import models, views
+from application.auth import models, views
+from application.reviews import models, views
 
 # authentication
 from application.auth.models import User

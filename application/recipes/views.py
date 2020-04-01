@@ -3,7 +3,9 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.recipes.models import Recipe
+from application.reviews.models import Review
 from application.recipes.forms import RecipeForm
+from application.reviews.forms import ReviewForm
 
 @app.route("/recipes/", methods=["GET"])
 def recipes_index():
@@ -40,7 +42,18 @@ def recipe_view(recipe_id):
     if not recipe:
         return redirect(url_for("recipes_index"))
 
-    return render_template("recipes/view.html", recipe = recipe)
+    review = None
+    if current_user.is_authenticated:
+        review = Review.query.filter_by(account_id=current_user.id, recipe_id=recipe_id).first()
+
+    form = ReviewForm()
+
+    if review:
+        form.rating.data = review.rating
+
+    rating = Recipe.get_average_rating(recipe_id)
+
+    return render_template("recipes/view.html", recipe = recipe, form = form, rating = rating)
 
 @app.route("/recipes/<recipe_id>/edit", methods=["GET"])
 @login_required
