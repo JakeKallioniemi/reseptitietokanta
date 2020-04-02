@@ -4,13 +4,7 @@ Sovellus reseptien tallennukseen, hakemiseen ja arvosteluun.
 
 ### Heroku
 
-https://tsoha-cookbook.herokuapp.com/ 
-
-### Toteutetut ominaisuudet
-- Uuden käyttäjän luonti
-- Kirjautuminen
-- Reseptien lisäys ja katselu
-- Omien reseptien muokkaus ja poisto (ei kunnollista autorisointia)
+https://tsoha-cookbook.herokuapp.com/
 
 ### Dokumentaatio
 
