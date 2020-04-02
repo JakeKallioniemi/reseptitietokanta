@@ -2,12 +2,18 @@
   
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
+  <div class="form-group">
   {{ form.name.label }}<br>
-  {{ form.name }}<br>
+  {{ form.name }}
+  </div>
+  <div class="form-group">
   {{ form.duration.label }}</label><br>
-  {{ form.duration }}<br>
+  {{ form.duration }}
+  </div>
+  <div class="form-group">
   {{ form.instructions.label }}<br>
-  {{ form.instructions }}<br>
-  <input type="submit" value="Add a new recipe"/>
+  {{ form.instructions }}
+  </div>
+  <button type="submit" class="btn btn-primary">Add a new recipe</button>
 </form>
 {% endblock %}

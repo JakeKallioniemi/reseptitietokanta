@@ -4,12 +4,26 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.recipes.models import Recipe
 from application.reviews.models import Review
-from application.recipes.forms import RecipeForm
+from application.recipes.forms import RecipeForm, SearchForm
 from application.reviews.forms import ReviewForm
 
 @app.route("/recipes/", methods=["GET"])
 def recipes_index():
-    return render_template("recipes/list.html", recipes = Recipe.query.all())
+    form = SearchForm()
+    form.min_rating.data = request.args.get("min_rating")
+
+    if not form.validate():
+        return redirect(url_for("recipes_index"))
+
+    min_rating = form.min_rating.data
+    recipes = None
+
+    if not min_rating:
+        recipes = Recipe.query.all()
+    else:
+        recipes = Recipe.filter_by_rating(min_rating)
+
+    return render_template("recipes/list.html", recipes = recipes, form = SearchForm())
 
 @app.route("/recipes/new/")
 @login_required

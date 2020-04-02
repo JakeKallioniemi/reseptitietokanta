@@ -1,20 +1,29 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Time (min)</th>
-    </tr>
-    {% for recipe in recipes %}
-    <tr>
-      <td>
-        <a href="{{ url_for('recipe_view', recipe_id=recipe.id) }}">
-          {{ recipe.name }}
-        </a>
-      </td>
-      <td>{{ recipe.duration }}</td>
-    </tr>
-    {% endfor %}
+  <form method="GET" action="{{ url_for('recipes_index') }}">   
+    {{ form.min_rating.label }}
+    {{ form.min_rating}}
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Time (min)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in recipes %}
+      <tr>
+        <td>
+          <a href="{{ url_for('recipe_view', recipe_id=recipe.id) }}">
+            {{ recipe.name }}
+          </a>
+        </td>
+        <td>{{ recipe.duration }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
 {% endblock %}

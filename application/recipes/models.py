@@ -17,6 +17,19 @@ class Recipe(db.Model):
     
     @staticmethod
     def get_average_rating(recipe_id):
-        stmt = text("select round(avg(rating), 1) from review where recipe_id = :recipe_id").params(recipe_id=recipe_id)
+        stmt = text("SELECT ROUND(AVG(rating), 1) FROM Review"
+                    " WHERE recipe_id = :recipe_id").params(recipe_id=recipe_id)
         res = db.engine.execute(stmt)
         return res.first()[0]
+
+    @staticmethod
+    def filter_by_rating(rating):
+        stmt = text("SELECT Recipe.id, Recipe.name, Recipe.duration FROM Recipe "
+                    " LEFT JOIN Review ON Review.recipe_id = Recipe.id"
+                    " GROUP BY Recipe.id"
+                    " HAVING AVG(Review.rating) >= :rating").params(rating=float(rating))
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "duration":row[2]})
+        return response
