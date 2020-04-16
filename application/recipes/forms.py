@@ -1,10 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField, DecimalField, validators, ValidationError
+from wtforms import StringField, TextAreaField, IntegerField, DecimalField, BooleanField, SelectField, validators, ValidationError
 
 class RecipeForm(FlaskForm):
     name = StringField("Recipe name", [validators.InputRequired()])
     duration = IntegerField("Time to make (in minutes)", [validators.InputRequired()])
     instructions = TextAreaField("Instructions", [validators.InputRequired()])
+    course = SelectField("Course", choices=[
+        ('Appetizer', 'Appetizer'), ('Main course', 'Main course'), ('Dessert', 'Dessert'), 
+        ('Snack', 'Snack'), ('Breakfast', 'Breakfast')
+    ])
+    dairy_free = BooleanField("Dairy-Free")
+    gluten_free = BooleanField("Gluten-Free")
+    vegan = BooleanField("Vegan")
  
     class Meta:
         csrf = False

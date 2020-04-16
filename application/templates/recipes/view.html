@@ -3,6 +3,9 @@
 {% block body %}
   <h1>{{ recipe.name }}</h1>
   <p>{{ recipe.duration }} min</p>
+  {% for tag in recipe.tags %}
+    <span class="badge badge-primary">{{ tag.name }}</span>
+  {% endfor %}
   <p>{{ recipe.instructions }}</p>
   <p>Average rating: {{ rating }}</p>
   <form method="POST" action="{{ url_for('review_create', recipe_id=recipe.id) }}">

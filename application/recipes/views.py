@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.recipes.models import Recipe
+from application.recipes.models import Recipe, Tag
 from application.reviews.models import Review
 from application.recipes.forms import RecipeForm, SearchForm
 from application.reviews.forms import ReviewForm
@@ -41,8 +41,21 @@ def recipes_create():
     name = form.name.data
     duration = form.duration.data
     instructions = form.instructions.data
+
     recipe = Recipe(name, duration, instructions)
     recipe.account_id = current_user.id
+
+    tag_names = []
+    if form.dairy_free.data:
+        tag_names.append("Dairy-Free")
+    if form.gluten_free.data:
+        tag_names.append("Gluten-Free")
+    if form.vegan.data:
+        tag_names.append("Vegan")
+    tag_names.append(form.course.data)
+
+    tags = Tag.query.filter(Tag.name.in_(tag_names)).all()
+    recipe.tags = tags
 
     db.session().add(recipe)
     db.session().commit()

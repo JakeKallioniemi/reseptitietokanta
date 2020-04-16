@@ -1,6 +1,18 @@
 from application import db
 from sqlalchemy.sql import text
 
+recipe_tag = db.Table('recipe_tag', 
+    db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
+)
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(144), nullable=False)
+
+    def __init__(self, name):
+        self.name = name
+
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(144), nullable=False)
@@ -8,6 +20,7 @@ class Recipe(db.Model):
     instructions = db.Column(db.Text, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                             nullable=False)
+    tags = db.relationship('Tag', secondary=recipe_tag)
 
     def __init__(self, name, duration, instructions):
         self.name = name

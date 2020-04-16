@@ -3,16 +3,32 @@
 {% block body %}
 <form method="POST" action="{{ url_for('recipes_create') }}">
   <div class="form-group">
-  {{ form.name.label }}<br>
-  {{ form.name }}
+    {{ form.name.label }}<br>
+    {{ form.name }}
   </div>
   <div class="form-group">
-  {{ form.duration.label }}</label><br>
-  {{ form.duration }}
+    {{ form.duration.label }}<br>
+    {{ form.duration }}
   </div>
   <div class="form-group">
-  {{ form.instructions.label }}<br>
-  {{ form.instructions }}
+    {{ form.instructions.label }}<br>
+    {{ form.instructions }}
+  </div>
+  <div class="form-group">
+    {{ form.course.label }}
+    {{ form.course}}
+  </div>
+  <div class="form-check">
+    {{ form.dairy_free.label }}
+    {{ form.dairy_free }}
+  </div>
+  <div class="form-check">
+    {{ form.gluten_free.label }}
+    {{ form.gluten_free }}
+  </div>
+  <div class="form-check">
+    {{ form.vegan.label }}
+    {{ form.vegan }}
   </div>
   <button type="submit" class="btn btn-primary">Add a new recipe</button>
 </form>
