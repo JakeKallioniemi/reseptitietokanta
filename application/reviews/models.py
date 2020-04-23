@@ -5,6 +5,7 @@ class Review(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'),
                             nullable=False)
+    recipe = db.relationship('Recipe', backref=db.backref('children', cascade="all,delete"))
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                             nullable=False)
 
