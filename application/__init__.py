@@ -42,3 +42,11 @@ try:
     db.create_all()
 except:
     pass
+
+# insert tags if needed
+res = db.engine.execute("SELECT * FROM Tag")
+if not res.first():
+    db.engine.execute(
+        "INSERT INTO Tag (name, category) VALUES ('Appetizer', 'course'),('Main course', 'course'),('Dessert', 'course'),"
+        "('Snack', 'course'),('Breakfast', 'course'),('Dairy-Free', 'diet'),('Gluten-Free', 'diet'),('Vegan', 'diet')"
+    )

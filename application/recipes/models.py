@@ -9,9 +9,11 @@ recipe_tag = db.Table('recipe_tag',
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(144), nullable=False)
+    category = db.Column(db.String(144), nullable=False)
 
-    def __init__(self, name):
+    def __init__(self, name, category):
         self.name = name
+        self.category = category
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)

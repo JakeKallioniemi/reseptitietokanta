@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, abort
 from flask_login import login_required, current_user
 
 from application import app, db
@@ -44,18 +44,7 @@ def recipes_create():
 
     recipe = Recipe(name, duration, instructions)
     recipe.account_id = current_user.id
-
-    tag_names = []
-    if form.dairy_free.data:
-        tag_names.append("Dairy-Free")
-    if form.gluten_free.data:
-        tag_names.append("Gluten-Free")
-    if form.vegan.data:
-        tag_names.append("Vegan")
-    tag_names.append(form.course.data)
-
-    tags = Tag.query.filter(Tag.name.in_(tag_names)).all()
-    recipe.tags = tags
+    recipe.tags = get_tags(form)
 
     db.session().add(recipe)
     db.session().commit()
@@ -87,12 +76,19 @@ def recipe_view(recipe_id):
 def recipe_edit_form(recipe_id):
     recipe = Recipe.query.get(recipe_id)
 
+    if recipe.account_id != current_user.id: 
+        abort(403)
+
     form = RecipeForm()
     form.name.data = recipe.name
     form.duration.data = recipe.duration
     form.instructions.data = recipe.instructions
+    form.course.data = next(tag for tag in recipe.tags if tag.category == "course").name
+    form.dairy_free.data = any(tag.name == "Dairy-Free" for tag in recipe.tags)
+    form.gluten_free.data = any(tag.name == "Gluten-Free" for tag in recipe.tags)
+    form.vegan.data = any(tag.name == "Vegan" for tag in recipe.tags)
 
-    return render_template("recipes/edit.html", form = form, recipe_id = recipe.id)
+    return render_template("recipes/edit.html", form = form, recipe_id = recipe_id)
 
 @app.route("/recipes/<recipe_id>/edit", methods=["POST"])
 @login_required
@@ -100,12 +96,17 @@ def recipe_edit(recipe_id):
     form = RecipeForm(request.form)
 
     if not form.validate():
-        return render_template("recipes/edit.html", form = form)
+        return render_template("recipes/edit.html", form = form, recipe_id = recipe_id)
 
     recipe = Recipe.query.get(recipe_id)
+
+    if recipe.account_id != current_user.id: 
+        abort(403)
+
     recipe.name = form.name.data
     recipe.duration = form.duration.data
     recipe.instructions = form.instructions.data
+    recipe.tags = get_tags(form)
 
     db.session().add(recipe)
     db.session().commit()
@@ -117,7 +118,22 @@ def recipe_edit(recipe_id):
 def recipe_delete(recipe_id):
     recipe = Recipe.query.get(recipe_id)
 
+    if recipe.account_id != current_user.id: 
+        abort(403)
+
     db.session().delete(recipe)
     db.session().commit()
 
     return redirect(url_for("recipes_index"))
+
+def get_tags(form):
+    tag_names = []
+    if form.dairy_free.data:
+        tag_names.append("Dairy-Free")
+    if form.gluten_free.data:
+        tag_names.append("Gluten-Free")
+    if form.vegan.data:
+        tag_names.append("Vegan")
+    tag_names.append(form.course.data)
+
+    return Tag.query.filter(Tag.name.in_(tag_names)).all()

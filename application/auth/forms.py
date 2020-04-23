@@ -11,6 +11,10 @@ class LoginForm(FlaskForm):
 class SignupForm(FlaskForm):
     username = StringField("Username", [validators.InputRequired()])
     password = PasswordField("Password", [validators.InputRequired()])
+    confirm = PasswordField("Confirm password", [
+        validators.InputRequired(),
+        validators.EqualTo("password", message="Passwords must match")
+    ])
   
     class Meta:
         csrf = False
