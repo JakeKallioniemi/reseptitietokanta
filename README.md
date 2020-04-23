@@ -1,14 +1,18 @@
 # Reseptitietokanta
 
-**HUOM!** Tagien lisäys ei ole vielä täysin valmis ja tagit pitää lisätä tietokantaan komentoriviltä, jotta sovellus toimii oikein. Tähän tarkoitukseen voi käyttää lausetta `INSERT INTO Tag (name) VALUES ('Appetizer'),('Main course'),('Dessert'),('Snack'),('Breakfast'),('Dairy-Free'),('Gluten-Free'),('Vegan');` Herokun pitäisi toimia oikein. Reseptin muokkaus ei toimi tagien osalta tällä hetkellä.
-
-Sovellus reseptien tallennukseen, hakemiseen ja arvosteluun.
+Web-sovellus reseptien tallennukseen, hakemiseen ja arvosteluun.
 
 ### Heroku
 
 https://tsoha-cookbook.herokuapp.com/
 
+### Asennus
+
+TODO
+
 ### Dokumentaatio
 
-[Tietokantakaavio](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/diagram.png)  
-[User storyt](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/user_stories.md)
+[Käyttöohje](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/instructions.md)  
+[Tietokannan kuvaus](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/database.md)  
+[User storyt](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/user_stories.md)  
+[Ongelmat ja puutteet](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/problems_and_missing_features.md)
