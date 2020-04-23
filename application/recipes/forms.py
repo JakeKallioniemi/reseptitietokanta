@@ -25,6 +25,8 @@ def validate_rating(form, field):
 
 class SearchForm(FlaskForm):
     min_rating = DecimalField("Rating", [validate_rating])
+    recipe_name = StringField("Name")
+    tag_name = StringField("Tag")
 
     class Meta:
         csrf = False

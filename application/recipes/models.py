@@ -38,11 +38,28 @@ class Recipe(db.Model):
         return res.first()[0]
 
     @staticmethod
-    def filter_by_rating(rating):
-        stmt = text("SELECT Recipe.id, Recipe.name, Recipe.duration FROM Recipe "
-                    " LEFT JOIN Review ON Review.recipe_id = Recipe.id"
-                    " GROUP BY Recipe.id"
-                    " HAVING AVG(Review.rating) >= :rating").params(rating=float(rating))
+    def filter_recipes(rating, recipe_name, tag_name):
+        query = "SELECT Recipe.id, Recipe.name, Recipe.duration FROM Recipe"
+        parameters = {}
+        if rating:
+            query += " LEFT JOIN Review ON Review.recipe_id = Recipe.id"
+            parameters["rating"] = float(rating)
+        if tag_name:
+            query += (" LEFT JOIN Recipe_tag ON Recipe_tag.recipe_id = Recipe.id"
+                    " INNER JOIN Tag ON Tag.id = Recipe_tag.tag_id WHERE UPPER(Tag.name) = :tag_name"
+            )
+            parameters["tag_name"] = tag_name.upper()
+        if recipe_name:
+            if tag_name:
+                query += " AND Recipe.name LIKE :recipe_name"
+            else:
+                query += " WHERE Recipe.name LIKE :recipe_name"
+            parameters["recipe_name"] = "%" + recipe_name + "%"
+        if rating:
+            query += " GROUP BY Recipe.id HAVING AVG(Review.rating) >= :rating"
+
+        stmt = text(query).params(**parameters)
+
         res = db.engine.execute(stmt)
         response = []
         for row in res:

@@ -15,13 +15,12 @@ def recipes_index():
     if not form.validate():
         return redirect(url_for("recipes_index"))
 
-    min_rating = form.min_rating.data
     recipes = None
+    min_rating = form.min_rating.data
+    recipe_name = request.args.get("recipe_name")
+    tag_name = request.args.get("tag_name")
 
-    if not min_rating:
-        recipes = Recipe.query.all()
-    else:
-        recipes = Recipe.filter_by_rating(min_rating)
+    recipes = Recipe.filter_recipes(min_rating, recipe_name, tag_name)
 
     return render_template("recipes/list.html", recipes = recipes, form = SearchForm())
 
