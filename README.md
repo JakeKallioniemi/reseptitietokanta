@@ -8,7 +8,14 @@ https://tsoha-cookbook.herokuapp.com/
 
 ### Asennus
 
-TODO
+Asenna vaadittavat kirjastot komennolla
+```
+pip install -r requirements.txt
+```
+Tämän jälkeen voit käynnistää ohjelman komennolla
+```
+python run.py
+```
 
 ### Dokumentaatio
 
