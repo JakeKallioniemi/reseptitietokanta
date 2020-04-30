@@ -65,3 +65,9 @@ class Recipe(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1], "duration":row[2]})
         return response
+
+    @staticmethod
+    def get_count():
+        stmt = text("SELECT COUNT(Recipe.id) FROM Recipe")
+        res = db.engine.execute(stmt)
+        return res.first()[0]
