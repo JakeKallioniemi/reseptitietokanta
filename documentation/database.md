@@ -64,3 +64,14 @@ CREATE INDEX ix_recipe_duration ON recipe (duration)
 CREATE INDEX ix_recipe_name ON recipe (name)
 CREATE INDEX ix_review_rating ON review (rating)
 ```
+## Tietokannan alustus
+Kun ohjelma käynnistetään tarkistetaan onko tagit tietokannassa
+```
+SELECT * FROM tag
+```
+jos ei niin ne lisätään
+```
+INSERT INTO tag (name, category) VALUES ('Appetizer', 'course'),('Main course', 'course'),
+    ('Dessert', 'course'),('Snack', 'course'),('Breakfast', 'course'),('Dairy-Free', 'diet'),
+    ('Gluten-Free', 'diet'),('Vegan', 'diet')
+```
