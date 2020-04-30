@@ -71,3 +71,14 @@ class Recipe(db.Model):
         stmt = text("SELECT COUNT(Recipe.id) FROM Recipe")
         res = db.engine.execute(stmt)
         return res.first()[0]
+
+    @staticmethod
+    def get_avg_rating_of_users_recipes(user_id):
+        stmt = text("SELECT ROUND(AVG(average_rating), 2) FROM ("
+            "SELECT AVG(rating) AS average_rating FROM Review"
+            " INNER JOIN Account ON Review.account_id = Account.id"
+            " INNER JOIN Recipe ON Review.recipe_id = Recipe.id"
+            " WHERE Recipe.account_id = :id"
+            " GROUP BY Recipe.id)").params(id=user_id)
+        res = db.engine.execute(stmt)
+        return res.first()[0]

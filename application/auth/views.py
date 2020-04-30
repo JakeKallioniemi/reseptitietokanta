@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
+from application.recipes.models import Recipe
 from application.auth.forms import LoginForm, SignupForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
@@ -51,3 +52,10 @@ def auth_signup():
 
     login_user(user)
     return redirect(url_for("index"))
+
+@app.route("/profile", methods = ["GET"])
+@login_required
+def profile():
+    username = User.query.get(current_user.id).username
+    avg_rating = Recipe.get_avg_rating_of_users_recipes(current_user.id)
+    return render_template("auth/profile.html", username = username, avg_rating = avg_rating)
