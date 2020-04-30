@@ -1,5 +1,7 @@
 # Tietokannan kuvaus
 
+Recipe ja Review tauluihin löytyy täysi CRUD toiminnallisuus. 
+
 ## Tietokantakaavio
 ![Tietokantakaavio](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/final_diagram.png)
 
