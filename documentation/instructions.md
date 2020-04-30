@@ -14,7 +14,7 @@ Linkistä "List recipes" pääset tarkastelemaan kaikkia tallennuttaja reseptej�
 
 ### Reseptin arvostelu
 
-Voit arvostella reseptin arvosanalla 1-5 sen kuvauksen alapuolella. Jos resepti on jo saanut arvosteluja, sen keskiarvo näytetään. Jos olet arvosttellut kyseisen reseptin jo aiemmin, näet aiemmin antamasi arvosanan. Voit muuttaa arviotasi niin usein kun haluat.
+Voit arvostella reseptin arvosanalla 1-5 sen kuvauksen alapuolella. Jos resepti on jo saanut arvosteluja, sen keskiarvo näytetään. Jos olet arvostellut kyseisen reseptin jo aiemmin, näet aiemmin antamasi arvosanan. Voit muuttaa arviotasi niin usein kun haluat. Voit myös poistaa arvosanasi kokonaan "Remove"-nappia painamalla.
 
 ### Reseptien haku
 
@@ -23,3 +23,7 @@ Listausnäkymässä reseptejä voit hakea eri kriteerein. "Rating"-kentän avull
 ### Reseptin muokkaus ja poisto
 
 Jos valitset reptin jonka olet itse luonut näkyy sinulle napit, joiden avulla voit muokata toi poistaa reseptin.
+
+### Profiili
+
+Pääset tarkastelemaan omaa profiiliasi "Profile"-linkistä yläpalkissa. Täällä voit nähdä kaikkien lisäämiesi reseptien arvosanojen keskiarvon.
