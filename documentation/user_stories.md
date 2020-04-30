@@ -102,7 +102,7 @@ Sovelluksen käyttäjäryhminä ovat kirjautuneet ja kirjautumattomat käyttäj�
 
 ## Haku ja järjestäminen
 
-- [ ] Käyttäjänä voin järjestää reseptejä arvosteluiden perusteella
+- [ ] Käyttäjänä voin järjestää reseptejä arvosanan perusteella
 - [x] Käyttäjänä voin hakea reseptejä arvosanan perusteella
   ```
   SELECT recipe.id, recipe.name, recipe.duration FROM recipe
@@ -112,13 +112,15 @@ Sovelluksen käyttäjäryhminä ovat kirjautuneet ja kirjautumattomat käyttäj�
   ```
 - [x] Käyttäjänä voin hakea reseptejä nimen perusteella
   ```
-  SELECT recipe.id, recipe.name, recipe.duration FROM recipe WHERE recipe.name LIKE ?
+  SELECT recipe.id, recipe.name, recipe.duration FROM recipe
+  WHERE recipe.name LIKE ?
   ```
 - [x] Käyttäjänä voin hakea reseptejä tagien perusteella
   ```
   SELECT recipe.id, recipe.name, recipe.duration FROM recipe
   LEFT JOIN recipe_tag ON recipe_tag.recipe_id = Recipe.id
-  INNER JOIN tag ON tag.id = recipe_tag.tag_id WHERE UPPER(tag.name) = ?
+  INNER JOIN tag ON tag.id = recipe_tag.tag_id
+  WHERE UPPER(tag.name) = ?
   ```
 - [ ] Käyttäjänä voin hakea reseptejä valmistusajan perusteella
 - [ ] Käyttäjänä voin hakea reseptejä ainesosien perusteella
