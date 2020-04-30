@@ -8,8 +8,8 @@ recipe_tag = db.Table('recipe_tag',
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(144), nullable=False)
-    category = db.Column(db.String(144), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
 
     def __init__(self, name, category):
         self.name = name
@@ -17,7 +17,7 @@ class Tag(db.Model):
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(144), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     duration = db.Column(db.Integer, nullable=False)
     instructions = db.Column(db.Text, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),

@@ -1,27 +1,62 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <form method="GET" action="{{ url_for('recipes_index') }}">   
-    <div class="form-group">
-      {{ form.recipe_name.label }}
-      {{ form.recipe_name }}
-    </div>
-    <div class="form-group">
-      {{ form.min_rating.label }}
-      {{ form.min_rating }}
-    </div>
-    <div class="form-group">
-      {{ form.tag_name.label }}
-      {{ form.tag_name }}
-    </div>
-    <div class="row">
-      <div class="col-sm-1">
-        <a class="btn btn-secondary" href="{{ url_for('recipes_index') }}" role="button">Clear</a>
-      </div>
-      <div class="col-sm-1">
-        <button type="submit" class="btn btn-primary">Search</button>
-      </div>
-    </div>
+  <form method="GET" action="{{ url_for('recipes_index') }}">
+    <table>
+      <tr>
+        <td>
+          {{ form.recipe_name.label }}
+        </td>
+        <td>
+          {{ form.recipe_name }}
+        </td>
+        <td>
+          <ul>
+            {% for error in form.recipe_name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.min_rating.label }}
+        </td>
+        <td>
+          {{ form.min_rating }}
+        </td>
+        <td>
+          <ul>
+            {% for error in form.min_rating.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.tag_name.label }}
+        </td>
+        <td>
+          {{ form.tag_name }}
+        </td>
+        <td>
+          <ul>
+            {% for error in form.tag_name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a class="btn btn-secondary" href="{{ url_for('recipes_index') }}" role="button">Clear</a>
+        </td>
+        <td>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </td>
+      </tr>
+    </table>
   </form>
   <table class="table">
     <thead>
