@@ -118,7 +118,7 @@ Sovelluksen käyttäjäryhminä ovat kirjautuneet ja kirjautumattomat käyttäj�
 - [x] Käyttäjänä voin hakea reseptejä tagien perusteella
   ```
   SELECT recipe.id, recipe.name, recipe.duration FROM recipe
-  LEFT JOIN recipe_tag ON recipe_tag.recipe_id = Recipe.id
+  LEFT JOIN recipe_tag ON recipe_tag.recipe_id = recipe.id
   INNER JOIN tag ON tag.id = recipe_tag.tag_id
   WHERE UPPER(tag.name) = ?
   ```
