@@ -79,6 +79,6 @@ class Recipe(db.Model):
             " INNER JOIN Account ON Review.account_id = Account.id"
             " INNER JOIN Recipe ON Review.recipe_id = Recipe.id"
             " WHERE Recipe.account_id = :id"
-            " GROUP BY Recipe.id)").params(id=user_id)
+            " GROUP BY Recipe.id) AS averages").params(id=user_id)
         res = db.engine.execute(stmt)
         return res.first()[0]
