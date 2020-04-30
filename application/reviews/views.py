@@ -25,3 +25,11 @@ def review_create(recipe_id):
         db.session().commit()
 
     return redirect(url_for("recipe_view", recipe_id=recipe_id))
+
+@app.route("/recipes/<recipe_id>/review/delete", methods=["POST"])
+@login_required
+def review_delete(recipe_id):
+    Review.query.filter_by(account_id=current_user.id, recipe_id=recipe_id).delete()
+    db.session().commit()
+
+    return redirect(url_for("recipe_view", recipe_id=recipe_id))

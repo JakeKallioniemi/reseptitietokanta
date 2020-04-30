@@ -68,7 +68,7 @@ def recipe_view(recipe_id):
 
     rating = Recipe.get_average_rating(recipe_id)
 
-    return render_template("recipes/view.html", recipe = recipe, form = form, rating = rating)
+    return render_template("recipes/view.html", recipe = recipe, form = form, rating = rating, review_exists = review is not None)
 
 @app.route("/recipes/<recipe_id>/edit", methods=["GET"])
 @login_required

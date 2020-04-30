@@ -8,11 +8,18 @@
   {% endfor %}
   <p>{{ recipe.instructions }}</p>
   <p>Average rating: {{ rating }}</p>
-  <form method="POST" action="{{ url_for('review_create', recipe_id=recipe.id) }}">
-    {{ form.rating.label }}
-    {{ form.rating }}
-    <input type="submit" value="Rate">
-  </form>
+  <div class="btn-toolbar" role="toolbar">
+    <form method="POST" action="{{ url_for('review_create', recipe_id=recipe.id) }}">
+      {{ form.rating.label }}
+      {{ form.rating }}
+      <input type="submit" value="Rate">
+    </form>
+    {% if review_exists %}
+      <form method="POST" action="{{ url_for('review_delete', recipe_id=recipe.id) }}">
+        <input type="submit" value="Remove"></button>
+      </form>
+    {% endif %}
+  </div>
   {% if current_user.id == recipe.account_id %}
   <div class="row">
     <div class="col-sm-1">
