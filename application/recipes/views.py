@@ -11,8 +11,8 @@ from application.reviews.forms import ReviewForm
 def recipes_index():
     form = SearchForm()
     form.min_rating.data = request.args.get("min_rating")
-    form.recipe_name = request.args.get("recipe_name")
-    form.tag_name = request.args.get("tag_name")
+    form.recipe_name.data = request.args.get("recipe_name")
+    form.tag_name.data = request.args.get("tag_name")
 
     if not form.validate():
         return redirect(url_for("recipes_index"))
