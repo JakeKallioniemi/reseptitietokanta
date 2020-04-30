@@ -6,7 +6,7 @@
   {% for tag in recipe.tags %}
     <span class="badge badge-primary">{{ tag.name }}</span>
   {% endfor %}
-  <p>{{ recipe.instructions }}</p>
+  <p style="white-space: pre-wrap;">{{ recipe.instructions }}</p>
   <p>Average rating: {{ rating }}</p>
   <div class="btn-toolbar" role="toolbar">
     <form method="POST" action="{{ url_for('review_create', recipe_id=recipe.id) }}">

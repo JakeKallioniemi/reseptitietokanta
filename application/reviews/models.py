@@ -2,7 +2,7 @@ from application import db
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    rating = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=False, index=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'),
                             nullable=False)
     recipe = db.relationship('Recipe', backref=db.backref('children', cascade="all,delete"))
