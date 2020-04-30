@@ -53,4 +53,4 @@ git push heroku master
 [Käyttöohje](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/instructions.md)  
 [Tietokannan kuvaus](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/database.md)  
 [User storyt](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/user_stories.md)  
-[Ongelmat ja puutteet](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/problems_and_missing_features.md)
+[Ongelmat, puutteet ja muuta pohdintaa](https://github.com/JakeKallioniemi/reseptitietokanta/blob/master/documentation/post-mortem.md)
